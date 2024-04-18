@@ -1,23 +1,23 @@
 Yii2-cart
 ==========
-Это модуль корзины для Yii2 фреймворка. Позволяет добавить в корзину любую модель, имплементирующую интерфейс dvizh\cart\interfaces\CartElement
+Это модуль корзины для Yii2 фреймворка. Позволяет добавить в корзину любую модель, имплементирующую интерфейс arturchel174\cart\interfaces\CartElement
 
 ![yii2-cart](https://cloud.githubusercontent.com/assets/8104605/15093925/aeb7a35a-14ae-11e6-96b1-72b737fa4a58.png)
 
-Для добавления функционала заказа можно использовать этот модуль: [dvizh/yii2-order](https://github.com/dvizh/yii2-order).
+Для добавления функционала заказа можно использовать этот модуль: [arturchel174/yii2-order](https://github.com/arturchel174/yii2-order).
 
 Установка
 ---------------------------------
 Выполнить команду
 
 ```
-php composer require dvizh/yii2-cart "@dev"
+php composer require arturchel174/yii2-cart "@dev"
 ```
 
 Или добавить в секцию require composer.json
 
 ```
-"dvizh/yii2-cart": "@dev",
+"arturchel174/yii2-cart": "@dev",
 ```
 
 И выполнить
@@ -29,7 +29,7 @@ php composer update
 Далее, мигрируем базу:
 
 ```
-php yii migrate --migrationPath=vendor/dvizh/yii2-cart/src/migrations
+php yii migrate --migrationPath=vendor/arturchel174/yii2-cart/src/migrations
 ```
 
 Подключение и настройка
@@ -38,7 +38,7 @@ php yii migrate --migrationPath=vendor/dvizh/yii2-cart/src/migrations
 ```php
     'components' => [
         'cart' => [
-            'class' => 'dvizh\cart\Cart',
+            'class' => 'arturchel174\cart\Cart',
             'currency' => 'р.', //Валюта
             'currencyPosition' => 'after', //after или before (позиция значка валюты относительно цены)
             'priceFormat' => [2,'.', ''], //Форма цены
@@ -52,7 +52,7 @@ php yii migrate --migrationPath=vendor/dvizh/yii2-cart/src/migrations
 ```php
     'modules' => [
         'cart' => [
-            'class' => 'dvizh\cart\Module',
+            'class' => 'arturchel174\cart\Module',
         ],
         //...
     ]
@@ -81,24 +81,24 @@ class ProductController extends Controller
 
 ```php
 //...
-class Product extends ActiveRecord implements \dvizh\cart\interfaces\CartElement
+class Product extends ActiveRecord implements \arturchel174\cart\interfaces\CartElement
 {
     //..
     public function getCartId()
     {
         return $this->id;
     }
-    
+
     public function getCartName()
     {
         return $this->name;
     }
-    
+
     public function getCartPrice()
     {
         return $this->price;
     }
-    
+
     //Опции продукта для выбора при добавлении в корзину
     public function getCartOptions()
     {
@@ -129,13 +129,13 @@ $elements = yii::$app->cart->elements;
 
 ```php
 <?php
-use dvizh\cart\widgets\BuyButton;
-use dvizh\cart\widgets\TruncateButton;
-use dvizh\cart\widgets\CartInformer;
-use dvizh\cart\widgets\ElementsList;
-use dvizh\cart\widgets\DeleteButton;
-use dvizh\cart\widgets\ChangeCount;
-use dvizh\cart\widgets\ChangeOptions;
+use arturchel174\cart\widgets\BuyButton;
+use arturchel174\cart\widgets\TruncateButton;
+use arturchel174\cart\widgets\CartInformer;
+use arturchel174\cart\widgets\ElementsList;
+use arturchel174\cart\widgets\DeleteButton;
+use arturchel174\cart\widgets\ChangeCount;
+use arturchel174\cart\widgets\ChangeOptions;
 ?>
 
 <?php /* Выведет кнопку покупки */ ?>
@@ -180,22 +180,22 @@ use dvizh\cart\widgets\ChangeOptions;
 
 ```php
         'cart' => [
-            'class' => 'dvizh\cart\Cart',
+            'class' => 'arturchel174\cart\Cart',
             //...
             'as discount' => [
-                'class' => 'dvizh\cart\behaviors\Discount',
+                'class' => 'arturchel174\cart\behaviors\Discount',
                 'percent' => 50,
             ],
         ],
 ```
 
-Поведение цепляется к событию EVENT_CART_COST и задает скидку (см. dvizh\cart\behaviors\Discount).
+Поведение цепляется к событию EVENT_CART_COST и задает скидку (см. arturchel174\cart\behaviors\Discount).
 
 Можно подцепиться напрямую к событию:
 
 ```php
         'cart' => [
-            'class' => 'dvizh\cart\Cart',
+            'class' => 'arturchel174\cart\Cart',
             //...
             'on cart_cost' => function($event) {
                 $event->cost = ($event->cost*50)/100;
@@ -209,9 +209,9 @@ use dvizh\cart\widgets\ChangeOptions;
 
 Все события корзины:
 
- * EVENT_CART_COST - изменение общей цены
- * EVENT_CART_COUNT - изменение количества
- * EVENT_CART_TRUNCATE - очищение корзины
- * EVENT_CART_PUT - добавление элемента
- * EVENT_ELEMENT_COST  - изменение цены элемента
- * EVENT_ELEMENT_ROUNDING - округление цены элемента
+* EVENT_CART_COST - изменение общей цены
+* EVENT_CART_COUNT - изменение количества
+* EVENT_CART_TRUNCATE - очищение корзины
+* EVENT_CART_PUT - добавление элемента
+* EVENT_ELEMENT_COST  - изменение цены элемента
+* EVENT_ELEMENT_ROUNDING - округление цены элемента
