@@ -97,7 +97,7 @@ class ElementController extends \yii\web\Controller
         return $this->_cartJson($json);
     }
 
-    private function _cartJson($json)
+    protected function _cartJson($json)
     {
         if ($cartModel = yii::$app->cart) {
             if(!$elementsListWidgetParams = yii::$app->request->post('elementsListWidgetParams')) {
