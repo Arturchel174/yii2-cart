@@ -38,7 +38,7 @@ dvizh.cart = {
                 itemId = jQuery(self).data('id'),
                 itemCount = jQuery(self).data('count'),
                 itemPrice = jQuery(self).data('price'),
-                itemOptions = jQuery(self).data('options');
+                itemOptions = $.parseJSON(jQuery(self).attr('data-options'));
 
             dvizh.cart.addElement(itemModelName, itemId, itemCount, itemPrice, itemOptions, url);
 
