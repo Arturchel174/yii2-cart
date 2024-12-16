@@ -13,6 +13,7 @@ class ChangeCount extends \yii\base\Widget
     public $cssClass = 'dvizh-change-count';
     public $defaultValue = 1;
     public $showArrows = true;
+    public $max;
     public $actionUpdateUrl = '/cart/element/update';
     public $customView = false; // for example '@frontend/views/custom/changeCountLayout'
 
@@ -41,6 +42,7 @@ class ChangeCount extends \yii\base\Widget
                 'data-role' => 'cart-element-count',
                 'data-line-selector' => $this->lineSelector,
                 'data-id' => $this->model->getId(),
+                'max' => $this->max,
                 'data-href' => Url::toRoute($this->actionUpdateUrl),
             ]);
         } else {
