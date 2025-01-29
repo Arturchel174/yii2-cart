@@ -29,7 +29,7 @@ class m160506_062849_create_cart extends Migration
                 'parent_id' => Schema::TYPE_INTEGER . '(55)',
                 'model' => Schema::TYPE_STRING . '(110) NOT NULL',
                 'cart_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
-                'item_id' => Schema::TYPE_INTEGER . '(55) NOT NULL',
+                'item_id' => Schema::TYPE_STRING . '(55) NOT NULL',
                 'count' => Schema::TYPE_INTEGER . '(11) NOT NULL',
                 'price' => Schema::TYPE_DECIMAL . '(11, 2)',
                 'hash' => Schema::TYPE_STRING . '(255) NOT NULL',

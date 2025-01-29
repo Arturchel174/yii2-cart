@@ -196,7 +196,8 @@ class CartElement extends \yii\db\ActiveRecord implements Element
             [['model'], 'validateModel'],
             [['hash', 'options', 'comment'], 'string'],
             [['price'], 'double'],
-            [['item_id', 'count', 'parent_id'], 'integer'],
+            [['item_id', ], 'string'],
+            [['count', 'parent_id'], 'integer'],
         ];
     }
 
