@@ -16,7 +16,7 @@ use dvizh\cart\widgets\ElementCost;
                 foreach ($options as $optionId => $valueId) {
                     if ($optionData = $allOptions[$optionId]) {
                         $option = $optionData['name'];
-                        $value = $optionData['variants'][$valueId];
+                        $value = $optionData['variants'][$optionId];
                         $productOptions .= Html::tag('div', Html::tag('strong', $option) . ':' . $value);
                     }
                 }
